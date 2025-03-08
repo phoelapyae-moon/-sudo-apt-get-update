@@ -1,0 +1,3100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="author">MINGALAR SKY TEAM</property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
+    <text-property name="title">Export Container Appointment</text-property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">5</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">5</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">5</property>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <text-property name="displayName">Export Container Appointment</text-property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">fixed layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">72</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">awpm_connection.rptlibrary</property>
+            <property name="namespace">awpm_connection</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="from_date" id="215">
+            <text-property name="promptText">From Date</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">date</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="javascript">BirtDateTime.today()</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Custom</property>
+                <property name="pattern">dd/MM/yyyy</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="to_date" id="216">
+            <text-property name="promptText">To Date</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">date</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="javascript">BirtDateTime.today()</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Custom</property>
+                <property name="pattern">dd/MM/yyyy</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="Status" id="234">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="sortBy">label</property>
+            <property name="sortDirection">desc</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">approve</value>
+            </simple-property-list>
+            <list-property name="selectionList">
+                <structure>
+                    <property name="value">request</property>
+                    <property name="label">Request</property>
+                </structure>
+                <structure>
+                    <property name="value">approve</property>
+                    <property name="label">Approved</property>
+                </structure>
+            </list-property>
+            <property name="paramType">simple</property>
+            <property name="controlType">radio-button</property>
+            <property name="fixedOrder">false</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="awpm_connection" id="7">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">org.postgresql.Driver</property>
+            <property name="odaURL">jdbc:postgresql://localhost:5432/awpm</property>
+            <property name="odaUser">odoo</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">Z29xemFjLWd5dmN5ZC0xcm9nakE=</encrypted-property>
+            <property name="odaJndiName">awpm_uat</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="export_containers" id="5">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">export_name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">export_name</text-property>
+                    <text-property name="heading">export_name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ex_state</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ex_state</text-property>
+                    <text-property name="heading">ex_state</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">export_control_no</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">export_control_no</text-property>
+                    <text-property name="heading">export_control_no</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">vessel_name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">vessel_name</text-property>
+                    <text-property name="heading">vessel_name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">voyage_name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">voyage_name</text-property>
+                    <text-property name="heading">voyage_name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">agent_name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">agent_name</text-property>
+                    <text-property name="heading">agent_name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">commercial_company_name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">commercial_company_name</text-property>
+                    <text-property name="heading">commercial_company_name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">commodity</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">commodity</text-property>
+                    <text-property name="heading">commodity</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">appointment_date</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">appointment_date</text-property>
+                    <text-property name="heading">appointment_date</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">time_slot</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">time_slot</text-property>
+                    <text-property name="heading">time_slot</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">total_containers</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">total_containers</text-property>
+                    <text-property name="heading">total_containers</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">gate_in_containers</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">gate_in_containers</text-property>
+                    <text-property name="heading">gate_in_containers</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">balance</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">balance</text-property>
+                    <text-property name="heading">balance</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">from_date</property>
+                    <property name="paramName">from_date</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                    <property name="position">1</property>
+                    <expression name="defaultValue" type="javascript">BirtDateTime.today()</expression>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">to_date</property>
+                    <property name="paramName">to_date</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                    <property name="position">2</property>
+                    <expression name="defaultValue" type="javascript">BirtDateTime.today()</expression>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">status</property>
+                    <property name="paramName">Status</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">export_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">ex_state</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">export_control_no</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">vessel_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">voyage_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">agent_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">commercial_company_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">commodity</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">appointment_date</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">time_slot</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">total_containers</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">gate_in_containers</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">balance</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">awpm_connection</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">export_name</property>
+                    <property name="nativeName">export_name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">ex_state</property>
+                    <property name="nativeName">ex_state</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">export_control_no</property>
+                    <property name="nativeName">export_control_no</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">vessel_name</property>
+                    <property name="nativeName">vessel_name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">voyage_name</property>
+                    <property name="nativeName">voyage_name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">agent_name</property>
+                    <property name="nativeName">agent_name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">commercial_company_name</property>
+                    <property name="nativeName">commercial_company_name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">commodity</property>
+                    <property name="nativeName">commodity</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">appointment_date</property>
+                    <property name="nativeName">appointment_date</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">time_slot</property>
+                    <property name="nativeName">time_slot</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">total_containers</property>
+                    <property name="nativeName">total_containers</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">gate_in_containers</property>
+                    <property name="nativeName">gate_in_containers</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">balance</property>
+                    <property name="nativeName">balance</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT 
+    ex.name AS export_name, 
+    UPPER(ex.state) AS ex_state, 
+    ex.control_no AS export_control_no,
+    ves.name AS vessel_name, 
+    voy.name AS voyage_name, 
+    part.name AS agent_name,
+    company.name AS commercial_company_name,
+    ex.commodity AS commodity,
+    ex.appointment_date AS appointment_date,
+    s.name AS time_slot,
+    COUNT(DISTINCT l_total.id) AS total_containers,
+    COUNT(DISTINCT CASE WHEN l_total.gate_in IS NOT NULL THEN l_total.id END) AS gate_in_containers,
+    COUNT(DISTINCT l_total.id) - COUNT(DISTINCT CASE WHEN l_total.gate_in IS NOT NULL THEN l_total.id END) AS balance
+FROM 
+    container_truck_appointment_export ex
+JOIN vessel ves ON ves.id = ex.vessel_id
+JOIN voyage voy ON voy.id = ex.voyage_id
+JOIN shift_roster sh ON sh.id = ex.shift_time
+JOIN shift s ON s.id = sh.shift_id
+JOIN container_truck_appointment_agent ag ON ag.id = ex.agent_id
+JOIN res_partner part ON part.id = ag.partner_id
+JOIN res_partner company ON company.id = ex.shipper_id
+JOIN container_truck_appointment_export_line l_total ON l_total.export_id = ex.id
+WHERE 
+    ex.appointment_date BETWEEN ? AND ? and ex.state =?
+GROUP BY 
+    ex.name, 
+    ves.name, 
+    voy.name,
+    part.name,
+    company.name,
+    ex.commodity,
+    ex.appointment_date,
+    s.name,
+    ex.state,
+    ex.control_no
+ORDER BY
+	ex.appointment_date,
+	ex.name;]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>export_name</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>export_name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>export_name</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>vessel_name</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>vessel_name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>vessel_name</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>voyage_name</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>voyage_name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>voyage_name</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>agent_code</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>agent_code</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>agent_code</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>agent_name</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>agent_name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>agent_name</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>commercial_company_name</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>commercial_company_name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>commercial_company_name</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>commodity</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>commodity</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>commodity</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>appointment_date</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>13</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>appointment_date</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>appointment_date</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>time_slot</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>time_slot</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>time_slot</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>total_containers</design:name>
+              <design:position>10</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>total_containers</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>total_containers</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>done_containers</design:name>
+              <design:position>11</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>done_containers</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>done_containers</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>balance_container</design:name>
+              <design:position>12</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>balance_container</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>balance_container</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="company_information" id="47">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">logo</property>
+                    <property name="analysis">attribute</property>
+                    <text-property name="displayName">logo</text-property>
+                    <text-property name="heading">logo</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">street</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">street</text-property>
+                    <text-property name="heading">street</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">country</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">country</text-property>
+                    <text-property name="heading">country</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">email</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">email</text-property>
+                    <text-property name="heading">email</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">phone</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">phone</text-property>
+                    <text-property name="heading">phone</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">name</text-property>
+                    <text-property name="heading">name</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">logo</property>
+                        <property name="dataType">blob</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">street</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">country</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">email</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">phone</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">awpm_connection</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">logo</property>
+                    <property name="nativeName">logo</property>
+                    <property name="dataType">blob</property>
+                    <property name="nativeDataType">-2</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">street</property>
+                    <property name="nativeName">street</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">country</property>
+                    <property name="nativeName">country</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">email</property>
+                    <property name="nativeName">email</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">phone</property>
+                    <property name="nativeName">phone</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">name</property>
+                    <property name="nativeName">name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT 
+	company.logo_web logo,
+	partner.street || ', ' || state.name AS street, 
+	country.name->>'en_US' AS country,
+	company.email,
+	company.phone,
+	company.name
+	FROM res_company company
+	JOIN res_partner partner ON (partner.id = company.partner_id)
+	JOIN res_country_state state ON (state.id = partner.state_id)
+	JOIN res_country country ON (country.id = state.country_id)
+WHERE company.id = 1;]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>name</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>name</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>partner_id</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>partner_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>partner_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>currency_id</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>currency_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>currency_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>sequence</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>sequence</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>sequence</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>create_date</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>29</design:precision>
+            <design:scale>6</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>create_date</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>create_date</design:label>
+            <design:formattingHints>
+              <design:displaySize>29</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>parent_id</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>parent_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>parent_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>paperformat_id</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>paperformat_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>paperformat_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>external_report_layout_id</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>external_report_layout_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>external_report_layout_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>create_uid</design:name>
+              <design:position>10</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>create_uid</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>create_uid</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>write_uid</design:name>
+              <design:position>11</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>write_uid</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>write_uid</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>email</design:name>
+              <design:position>12</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>email</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>email</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>phone</design:name>
+              <design:position>13</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>phone</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>phone</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>mobile</design:name>
+              <design:position>14</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>mobile</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>mobile</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>base_onboarding_company_state</design:name>
+              <design:position>15</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>base_onboarding_company_state</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>base_onboarding_company_state</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>font</design:name>
+              <design:position>16</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>font</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>font</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>primary_color</design:name>
+              <design:position>17</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>primary_color</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>primary_color</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>secondary_color</design:name>
+              <design:position>18</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>secondary_color</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>secondary_color</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>layout_background</design:name>
+              <design:position>19</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>layout_background</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>layout_background</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>report_footer</design:name>
+              <design:position>20</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>report_footer</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>report_footer</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>report_header</design:name>
+              <design:position>21</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>report_header</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>report_header</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>company_details</design:name>
+              <design:position>22</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>company_details</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>company_details</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>active</design:name>
+              <design:position>23</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-7</design:nativeDataTypeCode>
+            <design:precision>1</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>active</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>active</design:label>
+            <design:formattingHints>
+              <design:displaySize>1</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>write_date</design:name>
+              <design:position>24</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>29</design:precision>
+            <design:scale>6</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>write_date</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>write_date</design:label>
+            <design:formattingHints>
+              <design:displaySize>29</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>logo_web</design:name>
+              <design:position>25</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-2</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>logo_web</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>logo_web</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>partner_gid</design:name>
+              <design:position>26</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>partner_gid</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>partner_gid</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>iap_enrich_auto_done</design:name>
+              <design:position>27</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-7</design:nativeDataTypeCode>
+            <design:precision>1</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>iap_enrich_auto_done</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>iap_enrich_auto_done</design:label>
+            <design:formattingHints>
+              <design:displaySize>1</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>snailmail_color</design:name>
+              <design:position>28</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-7</design:nativeDataTypeCode>
+            <design:precision>1</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>snailmail_color</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>snailmail_color</design:label>
+            <design:formattingHints>
+              <design:displaySize>1</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>snailmail_cover</design:name>
+              <design:position>29</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-7</design:nativeDataTypeCode>
+            <design:precision>1</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>snailmail_cover</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>snailmail_cover</design:label>
+            <design:formattingHints>
+              <design:displaySize>1</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>snailmail_duplex</design:name>
+              <design:position>30</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-7</design:nativeDataTypeCode>
+            <design:precision>1</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>snailmail_duplex</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>snailmail_duplex</design:label>
+            <design:formattingHints>
+              <design:displaySize>1</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>nomenclature_id</design:name>
+              <design:position>31</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>nomenclature_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>nomenclature_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>resource_calendar_id</design:name>
+              <design:position>32</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>resource_calendar_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>resource_calendar_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>scss_modif_timestamp</design:name>
+              <design:position>33</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>scss_modif_timestamp</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>scss_modif_timestamp</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>company_colors</design:name>
+              <design:position>34</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>company_colors</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>company_colors</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="type">a3</property>
+            <property name="orientation">landscape</property>
+            <property name="height">210mm</property>
+            <property name="width">297mm</property>
+            <page-footer>
+                <grid id="85">
+                    <column id="86"/>
+                    <column id="87">
+                        <property name="width">5%</property>
+                    </column>
+                    <column id="88"/>
+                    <row id="89">
+                        <cell id="90">
+                            <text id="106">
+                                <property name="textAlign">right</property>
+                                <property name="contentType">auto</property>
+                                <text-property name="content"><![CDATA[Page :]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="91">
+                            <grid id="93">
+                                <column id="94"/>
+                                <column id="95"/>
+                                <column id="96"/>
+                                <row id="97">
+                                    <cell id="98">
+                                        <auto-text id="99">
+                                            <property name="type">page-number</property>
+                                        </auto-text>
+                                    </cell>
+                                    <cell id="100">
+                                        <text id="101">
+                                            <property name="contentType">plain</property>
+                                            <text-property name="content"><![CDATA[/]]></text-property>
+                                        </text>
+                                    </cell>
+                                    <cell id="102">
+                                        <auto-text id="103">
+                                            <property name="type">total-page</property>
+                                        </auto-text>
+                                    </cell>
+                                </row>
+                            </grid>
+                        </cell>
+                        <cell id="92"/>
+                    </row>
+                </grid>
+            </page-footer>
+        </simple-master-page>
+        <simple-master-page name="Container Truck Appointment" id="6" extends="awpm_connection.Container Truck Appointment">
+            <overridden-values>
+                <ref-entry baseId="8" name="AWPM" id="8"/>
+                <ref-entry baseId="9" name="NewGrid" id="9"/>
+                <ref-entry baseId="10" id="10"/>
+                <ref-entry baseId="11" id="11"/>
+                <ref-entry baseId="12" id="12"/>
+                <ref-entry baseId="13" id="13"/>
+                <ref-entry baseId="14" id="14"/>
+                <ref-entry baseId="15" name="NewAutoText" id="15"/>
+                <ref-entry baseId="16" id="16"/>
+                <ref-entry baseId="17" name="NewText" id="17"/>
+                <ref-entry baseId="18" id="18"/>
+                <ref-entry baseId="19" name="NewAutoText1" id="19"/>
+                <ref-entry baseId="20" id="20"/>
+                <ref-entry baseId="21" id="21"/>
+                <ref-entry baseId="22" id="22"/>
+                <ref-entry baseId="25" name="NewText1" id="25"/>
+                <ref-entry baseId="23" id="23"/>
+            </overridden-values>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid id="48">
+            <property name="width">15.916666666666666in</property>
+            <property name="dataSet">company_information</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">logo</property>
+                    <text-property name="displayName">logo</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["logo"]</expression>
+                    <property name="dataType">blob</property>
+                </structure>
+                <structure>
+                    <property name="name">street</property>
+                    <text-property name="displayName">street</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["street"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">country</property>
+                    <text-property name="displayName">country</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["country"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">email</property>
+                    <text-property name="displayName">email</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["email"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">phone</property>
+                    <text-property name="displayName">phone</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["phone"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">name</property>
+                    <text-property name="displayName">name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="49">
+                <property name="width">2in</property>
+            </column>
+            <column id="50">
+                <property name="width">12.729166666666666in</property>
+            </column>
+            <row id="51">
+                <property name="height">1%</property>
+                <cell id="52">
+                    <property name="colSpan">1</property>
+                    <property name="rowSpan">4</property>
+                    <property name="fontFamily">"AppleMyungjo"</property>
+                    <property name="paddingTop">0pt</property>
+                    <property name="paddingBottom">2pt</property>
+                    <property name="textAlign">left</property>
+                    <property name="verticalAlign">top</property>
+                    <image id="221">
+                        <property name="marginTop">0pt</property>
+                        <property name="marginLeft">43pt</property>
+                        <property name="marginBottom">10pt</property>
+                        <property name="height">1in</property>
+                        <property name="width">1in</property>
+                        <property name="source">embed</property>
+                        <property name="imageName">awpm_logo.png</property>
+                    </image>
+                </cell>
+                <cell id="53">
+                    <property name="fontFamily">"AppleMyungjo"</property>
+                    <property name="verticalAlign">middle</property>
+                    <data id="222">
+                        <property name="fontSize">15pt</property>
+                        <property name="color">#2833F4</property>
+                        <property name="resultSetColumn">name</property>
+                    </data>
+                </cell>
+            </row>
+            <row id="54">
+                <property name="height">1%</property>
+                <cell id="56">
+                    <property name="fontFamily">"AppleMyungjo"</property>
+                    <property name="verticalAlign">middle</property>
+                    <data id="224">
+                        <property name="resultSetColumn">email</property>
+                    </data>
+                </cell>
+            </row>
+            <row id="57">
+                <property name="height">1%</property>
+                <cell id="59">
+                    <property name="fontFamily">"AppleMyungjo"</property>
+                    <property name="verticalAlign">middle</property>
+                    <data id="223">
+                        <property name="resultSetColumn">street</property>
+                    </data>
+                </cell>
+            </row>
+            <row id="68">
+                <property name="height">1%</property>
+                <cell id="70">
+                    <property name="fontFamily">"AppleMyungjo"</property>
+                    <property name="verticalAlign">middle</property>
+                    <data id="225">
+                        <property name="resultSetColumn">country</property>
+                    </data>
+                </cell>
+            </row>
+        </grid>
+        <grid id="107">
+            <property name="width">15.9375in</property>
+            <column id="108">
+                <property name="width">15.9375in</property>
+            </column>
+            <row id="109">
+                <property name="backgroundColor">#0202F8</property>
+                <property name="height">1%</property>
+                <cell id="110"/>
+            </row>
+            <row id="111">
+                <cell id="112">
+                    <property name="diagonalStyle">none</property>
+                    <property name="antidiagonalStyle">none</property>
+                    <property name="borderBottomStyle">none</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
+                    <property name="textAlign">left</property>
+                    <table id="115">
+                        <property name="fontSize">12pt</property>
+                        <property name="marginTop">2pt</property>
+                        <property name="marginLeft">1pt</property>
+                        <property name="marginBottom">2pt</property>
+                        <property name="marginRight">1pt</property>
+                        <property name="textAlign">left</property>
+                        <property name="width">15.895833333333334in</property>
+                        <property name="dataSet">export_containers</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">export_name</property>
+                                <text-property name="displayName">export_name</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["export_name"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ex_state</property>
+                                <text-property name="displayName">ex_state</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ex_state"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">export_control_no</property>
+                                <text-property name="displayName">export_control_no</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["export_control_no"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">vessel_name</property>
+                                <text-property name="displayName">vessel_name</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["vessel_name"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">voyage_name</property>
+                                <text-property name="displayName">voyage_name</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["voyage_name"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">agent_name</property>
+                                <text-property name="displayName">agent_name</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["agent_name"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">commercial_company_name</property>
+                                <text-property name="displayName">commercial_company_name</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["commercial_company_name"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">commodity</property>
+                                <text-property name="displayName">commodity</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["commodity"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">appointment_date</property>
+                                <text-property name="displayName">appointment_date</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["appointment_date"]</expression>
+                                <property name="dataType">date</property>
+                            </structure>
+                            <structure>
+                                <property name="name">time_slot</property>
+                                <text-property name="displayName">time_slot</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["time_slot"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">total_containers</property>
+                                <text-property name="displayName">total_containers</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["total_containers"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">gate_in_containers</property>
+                                <text-property name="displayName">gate_in_containers</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["gate_in_containers"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Aggregation</property>
+                                <property name="dataType">float</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["total_containers"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Aggregation_1</property>
+                                <property name="dataType">float</property>
+                                <property name="aggregateFunction">AVE</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["gate_in_containers"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">balance</property>
+                                <text-property name="displayName">balance</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["balance"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Aggregation_2</property>
+                                <property name="dataType">float</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["balance"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Aggregation_3</property>
+                                <property name="dataType">float</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["gate_in_containers"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Aggregation_4</property>
+                                <property name="dataType">float</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["total_containers"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Aggregation_5</property>
+                                <property name="dataType">float</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["gate_in_containers"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Aggregation_6</property>
+                                <property name="dataType">float</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["balance"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="229">
+                            <property name="fontSize">11pt</property>
+                            <property name="width">1in</property>
+                        </column>
+                        <column id="179">
+                            <property name="fontSize">11pt</property>
+                            <property name="width">1.5in</property>
+                        </column>
+                        <column id="180">
+                            <property name="width">1in</property>
+                        </column>
+                        <column id="181">
+                            <property name="width">1.1in</property>
+                        </column>
+                        <column id="183">
+                            <property name="width">1.5in</property>
+                        </column>
+                        <column id="184">
+                            <property name="width">2in</property>
+                        </column>
+                        <column id="185">
+                            <property name="width">1.5in</property>
+                        </column>
+                        <column id="186">
+                            <property name="width">1.3in</property>
+                        </column>
+                        <column id="187">
+                            <property name="width">1.5in</property>
+                        </column>
+                        <column id="238">
+                            <property name="width">1.4in</property>
+                        </column>
+                        <column id="188">
+                            <property name="width">0.6in</property>
+                        </column>
+                        <column id="189">
+                            <property name="width">0.6in</property>
+                        </column>
+                        <column id="190">
+                            <property name="width">0.6in</property>
+                        </column>
+                        <header>
+                            <row id="116">
+                                <property name="backgroundColor">#E1E4E2</property>
+                                <cell id="226">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="231">
+                                        <text-property name="text">Status</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="117">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="118">
+                                        <text-property name="text">Appointment ID</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="119">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="120">
+                                        <text-property name="text">Vessel</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="121">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="122">
+                                        <text-property name="text">Voyage</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="125">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="126">
+                                        <text-property name="text">Agent</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="127">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="128">
+                                        <text-property name="text">Company</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="129">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="130">
+                                        <text-property name="text">Commodity</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="131">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="132">
+                                        <text-property name="text">Appointment Date</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="133">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="134">
+                                        <text-property name="text">Time</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="235">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="239">
+                                        <text-property name="text">Export Control No</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="135">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="136">
+                                        <text-property name="text">Total Containers</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="137">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="241">
+                                        <text-property name="text">Gate In</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="139">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="140">
+                                        <text-property name="text">Balance</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="141">
+                                <cell id="227">
+                                    <method name="onCreate"><![CDATA[if (row["ex_state"] == "APPROVE") {
+    this.style.backgroundColor = "#46BD61";
+}
+else if (row["ex_state"] == "REQUEST")
+{
+	 this.style.backgroundColor = "#E7D81B";
+}
+]]></method>
+                                    <property name="backgroundColor">#FFFFFF</property>
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="232">
+                                        <structure name="numberFormat">
+                                            <property name="category">Custom</property>
+                                        </structure>
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">ex_state</property>
+                                    </data>
+                                </cell>
+                                <cell id="142">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="143">
+                                        <property name="marginBottom">1pt</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">export_name</property>
+                                    </data>
+                                </cell>
+                                <cell id="144">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="145">
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">vessel_name</property>
+                                    </data>
+                                </cell>
+                                <cell id="146">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="147">
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">voyage_name</property>
+                                    </data>
+                                </cell>
+                                <cell id="150">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="151">
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">agent_name</property>
+                                    </data>
+                                </cell>
+                                <cell id="152">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="153">
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">commercial_company_name</property>
+                                    </data>
+                                </cell>
+                                <cell id="154">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="155">
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">commodity</property>
+                                    </data>
+                                </cell>
+                                <cell id="156">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="157">
+                                        <structure name="dateTimeFormat">
+                                            <property name="category">Custom</property>
+                                            <property name="pattern">dd/MM/yyy</property>
+                                        </structure>
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">appointment_date</property>
+                                    </data>
+                                </cell>
+                                <cell id="158">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="159">
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">time_slot</property>
+                                    </data>
+                                </cell>
+                                <cell id="236">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="240">
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">export_control_no</property>
+                                    </data>
+                                </cell>
+                                <cell id="160">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="161">
+                                        <property name="marginRight">15pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">total_containers</property>
+                                    </data>
+                                </cell>
+                                <cell id="162">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="245">
+                                        <property name="marginRight">15pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">gate_in_containers</property>
+                                    </data>
+                                </cell>
+                                <cell id="164">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="260">
+                                        <property name="marginRight">15pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">balance</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="166">
+                                <cell id="228">
+                                    <property name="colSpan">10</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="diagonalStyle">none</property>
+                                    <property name="antidiagonalStyle">none</property>
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="244">
+                                        <property name="borderBottomStyle">none</property>
+                                        <property name="borderLeftStyle">none</property>
+                                        <property name="borderRightStyle">none</property>
+                                        <property name="borderTopStyle">none</property>
+                                        <property name="marginRight">10pt</property>
+                                        <property name="textAlign">right</property>
+                                        <text-property name="text">Grand Total</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="176">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="261">
+                                        <property name="marginRight">15pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">Aggregation_4</property>
+                                    </data>
+                                </cell>
+                                <cell id="177">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="262">
+                                        <property name="marginRight">15pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">Aggregation_5</property>
+                                    </data>
+                                </cell>
+                                <cell id="178">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="263">
+                                        <property name="marginRight">15pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">Aggregation_6</property>
+                                    </data>
+                                </cell>
+                            </row>
+                            <row id="264">
+                                <cell id="265">
+                                    <property name="diagonalStyle">none</property>
+                                    <property name="antidiagonalStyle">none</property>
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="266">
+                                    <property name="diagonalStyle">none</property>
+                                    <property name="antidiagonalStyle">none</property>
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="267">
+                                    <property name="diagonalStyle">none</property>
+                                    <property name="antidiagonalStyle">none</property>
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="268">
+                                    <property name="diagonalStyle">none</property>
+                                    <property name="antidiagonalStyle">none</property>
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="269">
+                                    <property name="diagonalStyle">none</property>
+                                    <property name="antidiagonalStyle">none</property>
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="270">
+                                    <property name="diagonalStyle">none</property>
+                                    <property name="antidiagonalStyle">none</property>
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="271">
+                                    <property name="diagonalStyle">none</property>
+                                    <property name="antidiagonalStyle">none</property>
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="272">
+                                    <property name="diagonalStyle">none</property>
+                                    <property name="antidiagonalStyle">none</property>
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="273">
+                                    <property name="diagonalStyle">none</property>
+                                    <property name="antidiagonalStyle">none</property>
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="274">
+                                    <property name="diagonalStyle">none</property>
+                                    <property name="antidiagonalStyle">none</property>
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="275">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="276">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="277">
+                                    <property name="fontFamily">"Times New Roman"</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+            <row id="113">
+                <cell id="114"/>
+            </row>
+        </grid>
+    </body>
+    <list-property name="images">
+        <structure>
+            <property name="name">awpm_logo.png</property>
+            <property name="type">image/png</property>
+            <property name="data">
+                iVBORw0KGgoAAAANSUhEUgAAALMAAACsCAYAAAAwlJ29AABb0ElEQVR42u19d5hcVfn/e865Zfps79lN
+                Nn1TCKyEhABLJyCEIgsiSPGHoQmo2LAtIEpTEUSkKHaURRRpAioRLCAEUIjUL4QWQuq2mbnlnHve3x/n
+                3pm7s202JEiZ8zz3ISQzd+4953Pe83k7QHmUR3mUR3mUR3mUR3mUR3mUR3mUR3mUR3mUR3mUR3mUR3mU
+                R3mUR3mUR3mUR3mUR3mUR3mUR3n8LweSoouGrx7136LPlMe2jvLkvS2gAunuBrJxY2EeH3wQEAAQgMi3
+                cV/a1VW4Z10dYEcH4IUXAgIQLM99GcxvG7hdXUB9wMqJwEopwFNPrTH+8peGyKuvGgZzHMNhTBOiMOeJ
+                hOml05JXVnpuy+Ksc1jnDTalF0rE8Z+luxvoxo1ACiDf1o1TBvMHBbwUuoDAGMBdvRr1b16Zq89tJlOE
+                w1otgW3cgynSJY2AUMs9rPAkTSJCXEowANEAIIwA8QU3AcokMka4xsDVGDi6DkOagQOmSbZEDNgQiZA3
+                YzHxWmUSXq2sJa/uucBav/9HKvu9UaDb1YUaAMDee4P8oIK7DOYCgCkAUB9pXvhfzjtvfXz16qqZlgUL
+                bRcWcYfMcznO4AIaOTeingDgHMAVAB4H8ASAlACeVHcDyP8h/HuBDPeXgQCjAFQD0DUAwwAwIwDRCEAs
+                BhCJcEwkyOZ4HF5Lp+C5VCX5T1UF/mfePPeZU06JvyHESHDX1QHeeivIDwo1IWUAAwUAL7zg3d1b02vX
+                RhZZFt3TdsjurksWui5tdl0GjgvAHQAhABA9ABBYQCuOOa1knNlGLOU5GQXQwDAIxOMAqTRAOg2QTvFs
+                VRV5oboSH6urxb+3teMjZ58deTEM7u5uZAAA73dgfwDBjAQAWBjAhAAsWGDPsnO4nyvYgZYNS7irNzgu
+                gOsoqQvgAgB6PnALE0iAABBARApAqLo1ezvPpx4NJBICMgz1UUBPATRqGAwqKgBqawGqqoVbXwdrGuth
+                VfMUcd/hh2cemTu3dmgksIefPmUwv7dA7CNMLSIhAHPmDM3LZPTDXE4Ocx2yq8t1vQBeR/rAVRwACFXf
+                14AQOgJYhAAAcACQWUIggyiHCKFDAF4OgFiIYAMQHpLehBA0ACACQKKIkADAJCEkqf6smwBsDKntAclj
+                ERERsPCsjJmmBrV1AI2NAA2N4o2WZvxL6xT5+1NPNR+orSV5YPf0oHbBBeAR8v6Q1u9zMPuKHBSO19mz
+                NzUNDaUPdxz8KOdkd5frmusASClAsd1hXIH532UAAKZJQAjZ73nQr+u4ARFepOD9HxK6llLvDU0zNkgp
+                +mKx3NC++67K/fa3x3gTUQkSWoG5c3uNbPaA2IYNmKLUqBECGghhUwBgusdhugQyAxFqATCFSOOh9/TU
+                CaFOjdBvUUJMWlcH0NoGMGWK93pbK941dyb++qxzjL9xUZDWZavIuxrESrtXKwpQ32ztnap2fxZNulvN
+                CCKliAAuAtgcwHb9yz/W1UWI9P/rCABbVNd68owz3Xt//ZO+qcWAJGQsWZF3krAxLlqqs4QAQH39lnm6
+                bv8TQEgAWwA4glBEQgrPrSiK7RFicwBLqHe0PEIQW6Yg7tWFeMrJfPXFF4tznnp4qD5MQXp6kJYl87uK
+                DxMBANDZuS720tqabtelpwmhLRUcQHoSAHgggYlvP/BBiUAIX0spPsKY91fDEE/Ztv5FIaJHKGXPkzNn
+                GXS33eS66e1wU3sL//VJn4w8W0xnOjuVPTqRAAxswQAAF14IAHCBfwH09AA888ytBKAbNm4Eksmo9Xj8
+                cZBhiwoBgGntQws2bNGOt4bYSVLqDQA2ApgkkSQQT9i3ZQbFdZyzD0lJuyTCrijN6ryEJg4SAA8xsAsC
+                i0ZNMmMmwKyZ3ubZs/GWnefbN3R/LPlUoHD29AC81yQ1eR+BmAYAaG3tr9y4JfIJz6OnS0+fociDgwDg
+                H6xEBzB8ALucUlzNmLzXNPmfdtll65MPPTTNDoBAKYBh5D7ruvqXpSTVAFwSEqEzZwG0tgqnsRH/XlMN
+                99VX878dtX/smdlLyODbJaCEAJx4Yl/FmjXmvKEBuufAEFmeycIyyzY0KRAAXKnplFCdrm+oFJe9+kbk
+                +4RAXpltaFhXMzCQ3o1zbbnnkQMQ9dnoC39ClC5QALautU2jMG+uEPPmkd/vskB+77gTjX++F+nH+wDM
+                yAIQt7dvTb/5Zuw0ztmnpNSmKEDavgWCUACT+QBGSuBhpuHvDAPuzmYjzw3ntBiYJFApbQDNzVsXbtiQ
+                /J3nQTuiJwMunUgatL4eoLIKIJ0Ub0Xj8sV4hDynG/L/NJO8akbkBp14fbousrqu2ykNvQFOSCZjM9eN
+                mYOWl7CHsMrKGPVZG1tzOZiZs9kcK4czbVuvs3IAlg0gPUcCgEcAGBAGe+1F+o88zD7p059L3BVI0+XL
+                Qb/3XhBhqb6yc7V+8/MdizlnR3BOViDqs9S7ekCIEAVQU62xUYedFiIsXCj/sMtO8oqPnmD8IwB1by/I
+                d7ui+B4Gc8DtiOzuXmPcdcf0U13BPu95us9nbaGUPiWFCQGghL9MmXdrLObdMjiYeDJk9CIF8Ab2MSIJ
+                ANQ3DHbkHPNU16WHOpZsQ4n+htAZIPW/4CiXHhgQjSonRzQGYJgAug7AqAQKngACAhCkBAT0gLoe6MLT
+                mccJCJ+1uw6A4wJ4SgL7z2OSwIoBIDwAgPp6ShYuIva0qeSRuXPghk9/mt1OCHEAAFauRP2GG4J3IXmL
+                8/LlL5gPPTRlb1ew46WAw6TUK9S72BKAICICAKENDSbZZWcJu+wMt+y6m/jW4YebTwEA9PYiO+aY959J
+                73+8AZVyRwhANJo9nDH335BXgCxfoXN95Y2jpjn3RyK5YxcuXB8fqSQGmwJJYL4jBCBZObDUjPJf6yZ3
+                qIYI4CEA9++JSKnTTzXrDk3LPUCZm6XUEeoUsAWAbQPYTuji/t/LostXzmzH/46r/msJSh0PwEVKHVvT
+                cn/WNOtOSp2BgqLnIoAtKyoRlyxB/MQp4tkrrnDPQcRk8Ia9vcgK71VQiAkBqKrKNkeM3HmMuU8H9yTE
+                loTYQimNjmyZgnjkUcK55Jv8qqeeChRFJO9lJfFdKI0BqqoG52qa8/vC4gZWCQU4Sl1LM+yfJZPZ3YZb
+                GsIALrZBA6TT/Z267vyWUo5qg9hesDEodVxNc/5omtbJNTUbGwMrRlPTptm67jwLwD0AhxOqrCXUtzIE
+                FwyzOGB+YxRfAI5XW+t5xxzn3AnwVn3wO9XV2aZYzDpF05x7KXW4+ixHANsxTcTOXRA/8Qnvpau/Jz6F
+                iGZBmSvesIX3XblytZ5IZD+ia84Do4PaxblzEU/5f+LNH17vnsZYwUZdxuO2A1lTk3+9HonkzmeUZ3wQ
+                +9IwABzP6rpzbXX14JwCiPOmMTJyc6i/q6ra3Kzrzg8pdUVBwotgY7yp69ZllZVD84pNcFVVm5s1zXlA
+                WUhcL5FErKiybolEtnbpeu4YTcudp+vW5YTYNxKS/TUBp5eA00uIdTNj9o26bl2uabnPRiK5Y6PRgSWm
+                mf0Wpa5kTOIhHxbZH93kXUJp4f0DyRqvdOaZpnUFY+56ZWb0EMC2DR1xt90QzzpLPP2zm/hRBQfJKm08
+                8yUhAPH40P6a5vyxAGrLI8TyAGzONIl7diGef75Ydc89zs5lKb3N0lhNmC81H1GT7WLh6PZQN7iMROyb
+                qpMDs4dL3LEmu0BVTDN7OmN8gw9iAeAgIYiMua8Yhn1eU9NAddHzGOp53mpnzH0RAJEygQ2N3JkzyzqV
+                vE1NJB0f2psx9zUAxL32Qrzqe+7NiEi6ADUVHVd4p4aGN2uNiP15xtxXFag5Ath2PIF44IGIX/+6+P1f
+                /2rPLEjpHjoKqPMbPQTqkKR2MKBF9fWIHz3Os6+9VnwVsZeVpfSkLBVqgiOR3Fco5VaIUkgAS2oal3vv
+                y19uaBicW/CojQviPDeuSQ7M0nXn/tBx7VKGqJvu5kjMPr+tra9iJD1R962u3tTEmPsSAKKuu177dLFl
+                6dLcXqFNxApcNX+xsf9tVXB/DQCgqXLLFE1znwBAXLY74g++z39JaRBbkc9ayYNowYJXK41I7quMulvU
+                +yja1dqKeNLJov+GG9yzgk2muPRY863ez5/zYyhzHlb0yZaUOhicgkuXIn7lK95D9903ND+weCCWM2XG
+                pRUNDVvbCoBzseCpc4Tidq63z75e9oYbvCvWrcPY+JKisFDJpPUJSnm/L41tQhHNmMRkhXtj0/QtU4pA
+                TEIbgXZ1b0homv04AKKmcT63Q/Ttv3/2Q8pRg/r2evempjeqDcP+N4DEvfdF/NGPnG+PfL/hdKGxcmur
+                Ybg3USp9/m3ZlHDcZ1/Eb1ws/vD449mmiaWpOnkoAYjFMl8nxJM+nfMIsTkhtgdg84YGxJNPFpmf/tRd
+                WaAzZdoxquRMJjOHUsrfClkpOKGIhAYKlOMBWBLAxZ13QfzS+d5jq+5zFo3O59Q9lyz5Z9Qw7B+FN4cZ
+                Qayu4mtaW639Rwdx4e98C8pvlLLm2nM6BD9qxdA+2w/Iw5+3pWpzs645rwNwefTRiL/9be7jo0tXHGbl
+                ScUyBzLmPuNLaQFgu+3tiJ86R7x+++18/0CaDn/HQLcAaG7e3BKJBPw5sLxIf949pNQWALYglOPy5Yjf
+                /o73U0RlLSrTjiLJGYlkvkaJRDWBlgvgeJEoYlW1+0RVVf8Bmpb1ASmQEBV/UFODeMIJXu7668V5mj+d
+                PsfUlW22bxpjzr/8zeEQIrCiAnHKFOfqEw4IzHajKYoFcMVig5/0LQ729BmIK1ZkT9/+QB4uoauqNi9h
+                lLuaJryzzxFDL7yA08dWvgrCYPbsZ5OGYV+jNp5AAMuJxxGPPc6TP/mJ++nh1o7CRojHh45jjK8PUTpu
+                GIgVlc5b0aj1LUrtzb7Vgyth4vAFCxHP/4p48q9/VXTvAw5otQAHHPDvuGHYvw5MVAC2S6jEigrEtinW
+                FSedtCoSTHosNngqpXwgNLECgOOyPRDP/5J48Pbb1dGvpPzA7pS6b/pAtnQDsb6eb549I/uR0Ux0o1k9
+                KitzrYw6gwAur6lFPPhgp7ewYXbUWK2rTTTwOQDE5hbEyy53VzE2Hvcdrm8kErluprl9vpR1AFzv4EMQ
+                r7nG+UGw6QkBqK/vm2oY9i3qcxIBLAeAYzSO2NTk3rd4cd80AIDa2v7puubc64NdUqpoR1094plniq2/
+                /T0/5AMMaGU2qmp+vUU3AslpcwCL6yZifQNfP2dO5tAiRYX5itgcXXf+QggiAeHTEYfX1iEefbTgl1/O
+                vzF16tCxjPGcf183nkCcOtVdvdtuAzPHphTDgUEAQNdzvyMEUWOc77kn3/jtbw/WhJXCHekkIgTAMKy/
+                AyAefAjiH/7gnDS+MjecejQ2Ds4xDPffap4UZdt9d8RLLnd/f/PN2aZIZOizjLpbwzZ7yhCTKZFtbXE/
+                FzJz6iEF8auUCgSQedoRiXh43Mc8+ctfumd9ABVDNdmVlVsXMMZfDgAH4PBEErGtzXlo6dKtbaODbpgn
+                8BxK3T5fSntqQTjOnIVYVaWsFYTYPJ32cOYs97dnH785Fb7HRBIuHh/al1KJALY7aw7iySdnTt3xUnn4
+                M9TUZHamlHMjgt7nv8DfQMRkTw/SicGinnHx4hdSum7dqWiH7QE4Ym4H4sJFbn8QOqqksUQ9gpiqcv88
+                u31oQVj5LTaXpmL9BzGqKEmBdrje4SsQf3QD/1bw+Q8AoNUkJ5NbdqeUby4A2RVV1YizZ9s3XH/9an18
+                0BUcH7W1G6YbhqsoCpGoJtbOu5ljMU+eeCJ/xA+uAQAkvb3IRtpeh9+fEADdyP4TAGU0JuSHP+w+idjL
+                RipQO/70ikSyNwEgLl2KePMv3fNLO86RBBYKX6JeRYjnA9rylMNFueMpQzTjfF1NXeaTIWmsjbd+9em+
+                aYw5jwaAJsraxPfbH/Hqa/n1jL7vAa0mIh7v248SPuRLBQ7gyvpGxAU72V8cKREmvp/PEbsYc9cCcEmp
+                7SnXrO0R4shddhHOaWeIJ773HXEK4rpY8O3ubhwFnHmpvL9ySNh84U6In/2sfUTBGvCOOo9IfX3fNEqd
+                nKah/Myn+XrEzSkAJKMDpWCdUJSklyUr7MN03b2bEFf6pjahAo1sr3WqJxft4lzd0PBmbelzr+a9s3Nd
+                TNet23wrE1f3dNxleyBedTX/lXq+9yWg1QSk4v0HKEeIhwAWJ1RgyxThLV6cObE0Ljvivrov6ZdSyrcA
+                uL6rOx+/IQBsGYsh7rob4okf5y9efJE4/09/yrWG79LVhZoPbEYIgKbl7gFAjEQ8uWKF+5TyfP0v7KkK
+                mKZh/RRAZYzcdps4bbh0Hu5MAQCYM2egurLOOs2Mu6uZFo5lCQKnlISeNl3itde5P2MMYMYMNEsHXsEK
+                ZRi5awNAU2ojgOMuXop45dXuLe9DQOcl8t6U8hz4ShtlAluncXv33QdWbJupSy10RcXWhZTyjJL0Nq+t
+                Q6yosHoJyf2nEMhjcwDL0XXEjg7Eww7jg+eey3951VXWcsQXzPBdk8mB2ZRyF8AWczsQzztPOQjeGa48
+                2jsiSaczuxDieokkyq99jT+BiKx4vigBaG0d2L2qzv5BJOmu14wg0Ml2VMgqIqW2q+u51b7L2gOwxbI9
+                EK+7jl83eWuEAiohAFEze4lvjSoAegniVd/nNzP2vlEKFeBSqU27UuoOhoAsp80Q1p77ZA7cRiBTACSN
+                jYM1jLmBEmnX1SEu29O+SUmaF8xYzDmJMecRms+Zc1CFvrtY34C4dHfEY44Rz3/mM/yKK69w90JEprPs
+                BQQQgXDvwAN5/20/H6oLSe53eEGUDbm7u5fpeu5fAIgfOdrDV17J7AIAgNhDOzoyi1pa7K9WVfPHowmJ
+                TA9c9ZYbnFCUuv2aZt9QUbF1J5VJY/3cBzcHcNwPH4p48832edsIaI0QAF3PXlgM6GV7IF5zrfujwn3f
+                s4Du9TXyjTMZczcEHJlQ7rXPFO5+B2aWbyOQCcAqDRGJruX+HLin0xWIe+zh3o/YQ0dGh1kHaIZ9C6VO
+                htJhIaSOpiG2tiHusQfifvu7z5qmvRnAEQ2NiJ85z7l2tA3a1aUCgAoJoW+nomehYmh3d+HexTbwSGTo
+                OADEae2ePP8r7m9nzbG+0dDg/qeiwsVIJPCS2jyQwn7g1DOGYZ9fWbm1NSwIent7mWFYf1WAtjiAKz5+
+                ksT77rMOnNj8N4Y5kADo+tA3g7kNAL3//og33eRc9h62Q6sFnjVrXQ1jzvN+eCEHcMX0mRKXLx/q3nYv
+                mpIEpjl0aSCRzYjExUv5i1/6Un/lcE8ZsiC5hhCAdLpvWsSwv8CYvZpSgcWx0Som2UMA26uo4PJjx/P/
+                nHEmv/SLX+RHXn+VNR1xtV7K0QshUI52lZqljQhk/0O3ti5dah2UTlvfA+ASwJY1tYjJZHDaWF4YwJS6
+                WzTN/VUslvlwd/cao4iy0KK1eRlAIgGLR2NCfu5zYuNrr2WbJx/qiSHbeOaagNqpQCWHH34E4s032+ds
+                b0CTd+ZoBNrdDfCHP9h/cd1IFyG2QKQwrd3QZsyyz/rTvdFrOztRf/xxlW83OdpCvFSqf3kmk/6jlC4n
+                lNCFCylftJO99Gc/S/y7uxvZyOo9IwvCJJP9iy0reriU5BBEWASgg5QclHLKCID0DMNktXUAlRUAyaTL
+                Eyn6aiqGL0Ri5JlEQj4Xjcq1iSp33cw22HziiakBxoiQk0gFJQRAyh56wadPTj33VmX1wIDROJCBaTxH
+                ZudcOtey6WzHltMcx4gNDQK4juOpmh4og/JdKpDf3UopPKRp3u+TyaH7N2+ufyuUIqZBUTmyYB7T6f7O
+                oaH4PxBBQxQ4dWpEO/NT/IEvf9HY7+ZfIzvmmMmU91LrTinxGLNu5TxyNBBHEACGSL0TTtS14451Dvvw
+                hyN3ba90rHcCzBohROh65jrXjZ9GiCMQAZqaTW1eR+47f/pT/HPbBuQeCnChbG/fmn7llfh/pWRNAB6f
+                MdMwdlqYXXnbbYkbu7pQe/BBIibQwmk4T05J7MxOtq3t57r081KSepXUHQnn4UkAIJQaJBYjEE8AxOMA
+                0SiApnNpGjBg6mQr02UfYaSfERggVGYBSU4iCAKAKJFwjzFPYlQKjHsCUpxDhcOhUrik0nGxwuWGzkN5
+                ga4LgDKYpuBQcDAapZBK4xubN+EfDQPuT6X43zZuTG4MATigCeOAETUAIqLRwTMsK3ktpa6QEmHf/Uzt
+                zNOczx19TOQ7kwddUAr4FePvf2980PPMxYQ4HiBS3dTxjDMg8/ETxG4f+lDkuZ4epO/yLHB1hMRigyuV
+                JcHhAJaoqETce2/nHkrzgUDbsKmUXVjXc3f5PDlXU4u4/GBrG+MlApNWIUidUqsfQGJjk+DTpln3EJL7
+                A2P264zakoxIgRK+QukobyOVqOuIkShiPIGYSiFWVCBWVBauVBoxkUSMxhBNE1HXAq4b5BsKLESqYYg6
+                2EOUWo/reuYOANuuqkH8ylfcO4rSw6gfI00mJ3gATDN3u68Q2gCcn3IK4q9+5S71aQGd/LwCVFa+MYVR
+                ZwOAkIQoZ1ZdPeKFF4o1iOvj73ILh5IG6XTfLpRyR6UVWcIwPVyyO3+lp6e/qnSHyOi7vqN7jWGa2UsI
+                4VmmIS5dxt/81rcGqkfPqJgUqFkyOTDLMOynCLGt+fMR/3CrsxAAoKtjQyIeH5oXNQaPNvXsBYZh/YYx
+                61HG7DcYs6zh3HvbLh+wklJ7K2PW85pm36/ruR+YZvaseNzau6pqczMhyglCqWUx5sn997d+t3o16qPn
+                OE7q3Wl7+1Adpe5bCtCIdXXuveedl+3c9jSpAAv9+xMqJIDr82flhLrmWvcX72KFUJmQFi5cH2fMeU6V
+                i7IEgCsWLBTexz8+uMf29KAlEoMd8bhz76JFueO2530V5ehvTyQGj6iu3pQcLaouSDZtbFwXq6zMTYnF
+                +jsNI3NwJJI5UdOGPs2YdaGuZ76n67nrGLNvIsT9CSH2Txhxf6Jp9o26nvmBrmcv07Tc+ZpmnR6NDnVH
+                Irm9EonBuYnEupqeHmW7HZ0hIo3FMofG41tD8RPbRwhF4kMn6Dr/e2WlsjJtr1M6ag5dULBwKIXwsBWI
+                t/Vap07ecvIO0QulyWZvLASg2GJKG+KRRzoXbF+nw2hB6jt8o9JQ2tM7YG/OU6Axf4+Q7f2O4XuGM7zf
+                1rwpE6pu/cPHhaDEloxxcdZZIvvMM/asbaMyO5heJJMDhwVGcwBbxOKI+x3gPo6IOyBA5+3adiemHRMr
+                y8O6SRXn/k3iWlVkqpswIm4Hudbz9m62fecSoLp6YDalbg6A+3EhlmhsRrz0Uv53TQvA/D/nz2oCKitz
+                Uyh11wEIroJ8uNi5U4izzlLB8u9sgE55vBuNApHI4PlBNrzPn5199kX8yY/5BUof+J9jRD1AIjF4OKVc
+                Bk6M5hbE7mPs729felEe71Ew+y75NQZj1n8BPE+F/SJqGuIRRzm/W7NmjRGY9d4FD6usGIzxvxGCuGyZ
+                u/nGG/urJlOLuDze14D28ykzBxFQ5khd5w/FYoGy+a7CiDKLIQKJxq1vzJiWPXN0Za08PsgS2nd3fz8e
+                HzqBBgEH705bM9J31spQHu9NypG3x7xtYfcOmLHyvfXK/TLKY0zKUdx7sTzKozzKozzKozzKozzKozzK
+                4wOo7feO5hofJxwgHMqab3VRtiSVx/8SxKV4Sker4unbBkY02uyhY//OsHrRJZnHEIAigIYAzP8z8/8/
+                +LuSN1DoXpr/Z7ot9/rAu5bDE0UK3aYm832qvgpyW74/Elz5foZi5crV+m23LVxkWd7OngdtAGAQQjbp
+                OjzdXmU9/J9XSX8B1EAAiKirHFowlDNOdgXsBgC6rtOHa2v7L3/99do31f2DTBOkvrlUkODlcdimwNGy
+                Uvz5IkS1NpbDdkxRT2UE0C4AkBf6bZDHuBclKn1H5nehupcs+izzPzfmIP8bqQOs6J28SYInkDJe8A5k
+                jAmb4B5eGIABMCeatMl+trQ5+SsD2EcAADQ1bZnS15c41XXJMYhsjpTDharKguHrDQN/MWXK5iteeKF5
+                MwBAMpn5cC4X+b3nsWGJthrjr1bXeHtv2BB5FQqN7b22tr6KjRsjH/M42RMBE4TSV6JR9/bBweRfFC7D
+                4FfvTHwAZ5qadjL6+g5mnrcTel4NqMrvm6hh/J+MRP6xacmSx5rvuis3FhDD98q1t0/RNm8+mDnOYvC8
+                NkQEQuk61LTnZTL5gLFp079Uwznls3j7QmP7AJmNvafGDmMMjp1RVjS/k3H4Bhlz8w77HKWwafbsJM6Y
+                kVq9cqUeutd4z1K4ByFgNzR02On0kYjq+f1/J8GRWXSMjlFCS40lS/4ZjcXsrzMWVOPMF/rmwy/LC9Kp
+                NOa+kkxmVyQS2SModbf6tUjcUI09W7WqyP3Fb5GhAQCk0337aYyvLc6KoRTRNKxfH7BwfTwcghq8S3/H
+                kio3Hv+5x5gYM1WGUvQ07WUvmb40197RGpqXgDboAACDnZ01PBa7ymPawJjpOYyhZ5iPOTU1x4Dv8x5v
+                fd4pIFMAgLa2DQ2xmPX/dJa91DDsr6bT1n6UjlzYMDDC4BtqaVkg0umVXiT6YzSMR7xI5P5cU9PuEwE6
+                PAFb29tbeTx+oWcYjyBl6z3KNniMvSgM4167quooUL176Sj3KIC4sXEOj0Zv8BjLIaHoxBLf87+nj7Xh
+                Ri6EAsry5S+Y8bhznKa5TxbyCW2uwOjg6FcA8nDLNc//+xGf54QgpuND+wIAVCU3L2HUtQuFKlU52sJm
+                QTT17D3d3aoMWS90MwAAa+bMdqGbz2OhZCj31MMGF/f/Lp+46On6Vjed/hyw4UuTq2taKnTj5RBweSjx
+                UYT+XwYbxI1Ebu3v6Kj6HwNa1WxLJLKnM8Y3hzchIYi67jzQWtffPhqggRCwm5pmu4n0F4RhrPYYk8W7
+                2GNMWOn0J8cCdCDVV61apbnJ9Oc9TdsynlRxksmLwoD2NxUFABicsaiWJxLfQ8ayoUUVyLTne3zpnGlt
+                bXRjsa8Lw1jladoTnmne4yYSZ6496aRIYSFUBGE63bdI0/h/Cq9kiTEAORaovdA1xvdsDoBS0+wbKQXQ
+                mPV0obXGqJ93ABATsexKAgA9sErbvHhxSuj6f4OOmnLiZMZhXUCFaT7kVFYeZ6Wr9/PiyW96jFmh7pyy
+                1HsJ03x60+zZTf8jQAe15YbOUpnHeanDC51LETXNeaWtbUMDANJu6GUIQNZ1dsZ4NHqLxxgvAnCwa738
+                7qUMrcrag8KADlOCTGPjLp5pPhy6T/D9oNeEl78vpWhVVR3o38MITgUnXXWK0LQ3ws/h+ZPMTfNmAAA7
+                WXmI0LS3RstS9QzjyYHm5pkAAJ1wva7KWFn/DKowjS+J385le361okerqvoPJKqwoRjn80LJCGsNdl6v
+                AxBwEonvIQDmO3xOcIXALjFoqEhIuCFNANLJZPu6CIDcMNZs2n33pE/f3im9L99LZCqlbpCh7Y0lCXQ9
+                dxshAFfB2SYAgIglvh7emV4BfKPl+aPQ9Zfw0ENjxbzWTaXO9phmhUA8niTgCCA93bwz2PnZmTObRSRy
+                OxZqeTmhheBICNqJ9NF2TfNMjzE3NPHC/5wIFkJo+ksDc+ZU90IvowQgmcx8jhT698kdBGbpV7d/M2rm
+                ehXWbDH+d1zUqO1FKrANZ0GNYLqNY89/KZcIzQd/G/dxEQDdaPSXY9HBHcaRe3t7ma7b94YbRo5xcUIQ
+                4/GhY1V9VA0E0/8W4k8TTxYh6KTT3QGQ1x16aMyNRn8RksYCSzse0dOMJ4ExsCorDxKa/kYIxH4f4ZDk
+                IQQzzVN38nT9vtCGGO3eDgIgj8SuBiCwCro0VU0pcxKlvM8vwVsioO1Jgp8jIbZt6NYb43DrYdJcJ4gQ
+                x/mYhpORaFjiOuAkJfe2fI8joWhVV+87CeV/24FMCEAqZS3XdedvhbbAEx2FQjLmrD+0cXUNABLXjP1m
+                AnCMkKiuGf0ZEALZGQtahGn+ayJpLEc/FtEjNCMikds91fsBEcDyFZrN2bq6I4UZ7Q1RiL5cdfXHPEI8
+                BJBjLZSvGEmPsq39rQsqAyWQEgDGci+XNk8BkF1U1e9Ll9CEOBiN5kqW5oxIhBrcGXW4G4HKEoXBOwF2
+                gQDSNYxVgEh2oHT2a/RGsxcUTmWrRC6oNOmE2X8VAMCm6rZ9Qmr6uC8evLxHqcNjiZs9TXu5CMjybUwu
+                R0JQRKN35ebObQMAEJHI57Dwm687scR3g4mWE0l+QtBKp/cBIEBBNbWn1PHp6ITSVgI4HqXcSyYzh0aj
+                2dMKvf4mnGNpmrn1pQCZgEAg2Hd54/nLkMKgX9xZbg9wyglAW4LUlr7i/9b6hQvjxc6v7Uotamoyuygg
+                u6LESQ5xO+5R6lit6bfaAZG4RuTxsShCiRq1V8ytS5l4WdgIAilFnkxeApTlTXTCML4aAvNbIh7/fYm/
+                IZAQ6UQixwIwYAAQi2UOLR2QlgBANIzc1QAAFRW5Nkodd+KNYHsAEqPRXC8h9iCAGM/sxzVACRreihX0
+                4wgMJymVRWjud4Q0l/6892N9fV0A5u0tnpVpKkMPUw4bKVWVylIHIQCelNKI9FmRLwIhaEcrrwNCRnXv
+                keHmt/B/he8eJQBAJWXcY8z2PY8Teo+G5/IQJmKJK/VM5nyUHkMAQ3mzqMz/JEJCIqZB/Wgpc0oo0ezg
+                l6TU5vue4AmeDRFAo5S6g83N3jcBkEUiIgeAmRJoowQgwDk+rOviF6pqqHRH+Q31CgQI1MDlkMUjJ+lw
+                QwBgQCkFSmmpcz72M4Pwr1HugUaOcz0/p9s/1AFACDqr4Dad9GAAAnMielxd3VB9cnHtzR7T36JqUuSo
+                Pxj6IRKOOSGEiGj0Ft7YMG+wrW22m0j8AAghUILr23eZMkmJ7aaT30VEemthgkHSvHvWoyhjvmvdoxO/
+                M5WESCuWfB4AAQmAlN7CEufGA9CIpolb165NbgAgHqUoJzPPQpBIV9fQFzSNPwcQMXxhJ/zLAzAoI7om
+                TPgytpPnuNQO8V+ZlgQ+QoiMxn/Kq6q67Mqa/b1IZFUQu7INQKb+WmqjvyMRUtNEERS2L1/WNPtPhYY4
+                Exr85VjcuTKy5YsAAJlo1XcmoQiGLBL6S72Iw9zXwjD+Ocz2OcFRJijdsKGjIxF2yQIAOIlEd6iXBDrR
+                +H1C015DVQhCjqe4CF3/FyrFxVf+7CdKVZIJ8TCRyO0VeA8rG7e2UmrZE5v21JwyZl0QeGJNw/41pa4I
+                jD2quj5/oza69QwgANlo5Rn+O/ISKJ5AAHRise+HZeRrn/lM1NP0l0O2/NJphK6v47HYtTwavcljLBP6
+                N59msPXhtdkhYGbMemhiMNsy1EixeBEFgESDZZ7u6UE62Ng2x7ffSlmqwgaA3Iz+PHB8+BdxkumTMWi6
+                PbHCIpFSd7ChoSMUY0EBAKzalhkepTykjDztJNMXBY6FANAh/i3yDpnK1EEABBCANDW9UU2p3TexuUxx
+                Xsbsl7u70SjUJ8nsrLqkOrIU5dowcl8I15KrrByaF4s5p8Sj1tnJpH3YTm1rK/w6EUQYxl/89yll40uP
+                aUODixbV+vOkI4AJAMAjkevGEkZydEEkuWE8ObRwaV0Qy2pX1R4dqver/ApM+08gFHaYJUPTArvyaGC2
+                pTIrIWqatYYxa9MYUklSKmRjelMnEAAnErsfAaRXmiLoO1GMPweG9eCFBzs7azxN6wtLgIk2hZ1IfD3s
+                FkcAgoiEa8aTIaXOc1paFnAjclPIru0NK7JMKbqxxNeAELgeVuoAAKlUdldl0bNLBeOP1JugCQAQjWYP
+                L015tDkhiJFIvi2dPlpwlx9qxXJTp7Z5jNmlzFOwJq4ZudOfb5a3/xICnmn+MjyfE1p7KEW3sXEP/x4R
+                BGCISAXTXg07ToRm9IbtzNtdAUQEoFSuhyDetSCc/ItIQqgXj+fOlDI6v6VlcIGu23cAmFTNS6DooCsl
+                kxlb70YEkjErbwRC8gcYjkfa/fci0ts9O316ix8eShCApZ54YrPU9fv8j04UvkkBADTb+djqldfroc8z
+                QghixLjdJ3ccECjbsmVfnTuf4PH41z1NWw+EUiCEAaVEavqzbiJxgmFlv4GI7DS43tcvsMMP6ZjoWQgB
+                AKrDA/5LEl+AzitNeQQGgKDr9MWQQiiLK4w+Bp06APHoli2HU88zfeWLjDPXEDQBRMO8zS/iQtDX5jct
+                XZpEz9sv/NFxSLIEACo1bY3+5pv/9E9BhwB4j592GoOCHUD9tKE9tgNDmf2ieEbuvEL44giBiYzlnvfD
+                EQkAQHd3r6Ex5znfzeqE4lPQ0LOrCAC8tuQ7UaFpayfh0+dICLqJxMqA667ywzDtiurDSqEaYUlh1dXt
+                F7jJA6rR19o6zWMsFzyPMIz7gwi5rZ2dabeioosnKg7PVlXttnqlksQFA7+aK9O0vl1oCjQeJXORUpfX
+                1AzMCocK6Jp1a9BEcvzve0ipNdDUNFAdjtgbNbqQEBC68bcSTY0BzRocmj+tvijck2TT6Y9MYq45AqCb
+                SHwhOAkDqZurrV3mO7CUTkIpOjU1u+zAgCO/JW7amqYx/hKl7hBj9lrGrGcZs19k1HmDUs82zew3QqVf
+                dQCAimR2BaXSrxrvZHXd+WMsZv2/6upsE0KXBkCAR+PfmIQiKMIAC1ONdYceGgsFDHmleBa5Gf25b+IY
+                doQK0wzsy9JjrH9w1qyasdyrw//e78mtj0fJhgcKMWavVXxZDVV8sBTPoQrmYsz+uy9E6HhhsnZT02yk
+                tFQdhUsA9MzIH0ajGCIW+30QLlriprBy7e2txXHsTix2dRDgrdbVfLCnB+kOjs1QO76tra+isTLX2tm5
+                LtbVtUrr7l5jtLX1VdTVWe1+nGwof01NbjI5sDQed06or7emDcvG8R94YOrU2R5jw1zTcmzerD7DtFx2
+                xowWAICe0OTwWOKq4o0hx51krX9w0aLaYsmTS6WOzVs1CEEnlTrO/3fdl+JsZB6beu+VK1FnzC4ZjJpm
+                /ykcYF9RMbSQEleWqvyZpnVh+FQYK1TWjcW+MimhQQg6yYoTw/MCADA0f369x7ShEvUT5aKORO4qFj5r
+                TzopIjTtFQzHZVRV7b8D4zJKTcIcLfsEtUBCjxtcTymISOTPk/DmKaqRSp0WznTwj63d/Si40ilLqvK0
+                0PFHAAD6duqq8DRtc96UZ5q3hSXUeJ7S+nprKqWOU6pZTddz1/vfjwAARCJ5OscncmMTwmU63d+pvt/L
+                xsyiQaRC054KTi05vsKmNrqmDQ3Nn19fbL50E6nTxzLtjbUp7NrajxRTDKuqan/fkuH6p+2DOzBirmDL
+                pVRVRo/HnWNN07rYMKxfaFruLk3L3WNoVq9h2NdEo9anKitze8yYsTlV3L6AEIAFC/or4/HcR6OmdWl9
+                /fq4kqo9EQQkorLy2FI5WF7LLqIaCEB6e3uZMIw1/ue8CUx0PmUx/w6UhoP2GRACPBr7RbD4HmMDQ9MU
+                d+wZc7KDkq7Wgb4lwivRkvG1gC/7sdB/K4GiCACUjFlPqKZFY3Jltcnr6pbKyWxyAClMs5hiUKAUuFEy
+                7/b8EN431h16aKx4U/BI9MZ81CEhaFfUHAoAsGr7J2Srhenq2pCIx+1zdZ0/SqkK5xzv+SlFZMxZp+vW
+                H0wzd6VpZi82DPv7uu78kTF7veLOiPX11lQApMEKbNp996TH2Ibxji45koflNvtUI8zD7ETia5M4TqVH
+                mdha17IgdB8GAMSurPxwmGq4qdRZ4WN7HEX5s6VJVgXmqGl9KjgFq6sH51DqcpX0MX4sBwHEaDR7WikU
+                w4lEfjBZiiEqKk4qznscbGyb41FFCWWJip8Ti323+OTb0NWd8DRtffBZoevP4qpV2o5wkviN3YcO0DT+
+                fAHALg7PKSvOMbP5SEtH0amuFuD04JcSiewZ8yqfngJAwI3Eb5yEEX40qqEUnebmmUhLdsaoCY/Gvl08
+                4es6hymUKAzjSUQcJwtCAUrT7J9MCsxR64xAsppm7soSrCB+WK39RkfHhsRYPVKC59w0e/ekx9j6ULhq
+                aVaMaaNQjFSqJEFRcE4xmWlsDKwTQQ0OwisqVvgUw0EAdOPxz4wvKLZprNIIACRi2ZWqv3SQUzYMwHLi
+                KLlikFtB1sntAQWprR3cg1LEdKTv8wAAGytmdE2C7yqKEIncX5TXR4FQ8AzzwRK9XMFR+CoWcvlCR2Hk
+                h/m0IkIwV1GxFxZng4f0C+Uptf9VotufAyBGDPvLAACNjblWSt2BoHf2RN+LxbIrx8uOzwMnnT46oHCy
+                VIoRyTtKaGBfxt5eFsoX9Eqhgtww/jkqhTPNm0MUbjCgcNuRLwdNCoe6/VBPr5BNXLx5g0ktFdzcY8zp
+                mzJlUxMA0oUL18d13XoBwJOM5Z7p7ug1erp6NKFNzHeLrBHZ0aiGm6ocV0mRoxyrvKLm0JDNWSkp1dX7
+                IKX5HDlhmr8bXRFUkrG9fWuaMWuzerwJ5yWwZty3xx6vVuq6U4I5T4WK6rr1r5HWo1H4sjIz3jGeGU0W
+                g1BZMU56m8q1QELQSqVOLz7x+hcsqPQY25JfQzN6y8TK9bbYkuv7pjLmDCrpYAk/5hwZy72k6/b9jFn/
+                YszeQKkYlmEUohxyrEWLRoc+HfxaNJr9ls/9HUIQp8TWHQgAMJio6pk0t0skPllsPsp0dDR4jA1Oxr0t
+                IpHbg0kNFMo1PT2G0PWXgt/zKOVOff08BCC9RfZlP6ZikQrtcEpMfVLxyozZbxUcUuPRC+4x6uYaqgY7
+                Rs16LzJ79tW3ThOUORMlMsgiirGho6NhxCkVi11T4tqMSVWU2bPi+LAuYqfTR4R/Z7uVDdD1jO95slwA
+                gZrGN1VX5z62fDmaQZ2z9vat6ZqabGc0ap2h686tjDkbhvPqcE6g7Snpa7+4fPkLJgDSujqrXfWLc4OO
+                RDJmDF0HAPBKw6KOsRQMObYD5b4iqhFIpFuLJdI4NmcpGMvbrsNSnkfjV4RTrNxo9FcjJUmQrZ47bhIZ
+                IqFrIuuHJQEcofIp+48bj15sq205oAbCNO8Mb2oAgNe6u6NC01+fhEMKeTT6m1EdLpHIncG8C8Y2bl68
+                OLUdI+SCpt5D8yl1PZVJ4nqMubmammxnkfSmxSa3OXMGqtMJp9s03dsZc9zCwtgiqLwTi2VODb5jGNmQ
+                ghR4waznru+8XgdCQRiTdrlmN7fMbA6DEAGInU4fNWmXazL52WJ7qFtXtyR0vHoeZe5Qff280dzYuml9
+                q0Qb8ShUbDw64khCEKPRoXPGs16Elb/VK1fqQtOfHw+AcvTk4ZNHhgpUrBhvLovs1iqFrKrqwOJQgcyc
+                OY0e0zLB83DD+NV2dpLk4wku8RfCAkBMJjNX+54p39U6fhN2QgCm1DvzIhHnh2ETnqbZLy30y0LV1fW3
+                U+rYyvRkyyCJk1JHdFS90AEAkI1XnT0Jo7zK40tVnlZMNTZ0dSW8Qq0LWZqb3Px3YLEIrlU9PZrQjKeH
+                ZWJHo1cM177VyaZp1h2lKX+lAlwpe5RynkgEAmFCIDMEIFZl5UGh8MpS8+8yRdTAV9iit5R4ynl+zPKL
+                uHKlHqxFwWya/qKfd2grbp48cXtTDF8Ltx7118uj1HXq6/umhlrtkqDEQCLhdJum813TdC5LJu1DurvX
+                +GBfrQegjsUyJzMmHjQMt7e6emB2wfSUvWSk5LIFIYjpRH83AMCz9btN9QN9JgFCo9iqEdhXr50EB/eQ
+                UszW1S0pKudKeCRyZahIHHq68ZivpZPC3CBjzHq+9GzsiSxBft05jT9dWTm4RylAHh6iGblt0jEvoXDP
+                fHjtjBm1grGByegfTjx+YXF47aqeHs3T9WdCMS92burUtu1oxVAL0dg4WKOCyXkQAfdCT08wcUgBCDQ3
+                b27Rdefh4jJcTOPPJJOZgwuTrbjc8FrCSLu7NyQ0zX7dD1j3Rpqocl9RYYc6CN24b7JUIztzZnNQcitY
+                DDuZPGyyVINH4zeFqIYKRI9GfxyOufUYGxicNasGAKDbdyNXVW1uodS2/OpOpdbJEMMLJ4pwdsibsZj9
+                5c7O1bGJOHKx4pdrb28VqlSWLNnerpTpU0MnnOYnPpxS4hwqJZMx1546dXaREwrc6oYPIS2UNvA07fGC
+                QNiOmdctLdlmSu1cUKWJMes/PsVgAKh3dq7Wdd36V6go37AyXJRynkplP1RoMp5vep6PoKuszCxX1LNY
+                agUxCvYPVVIYAyeROHUiqiGLHSgVFZ8KBX6bCEB5ZeVBpYJZFqQzd6rrjg+KI/bPmzddqDp2Mn8Ritnq
+                6l0BAK6H63Wl/Fl7l+bGLlb8CoKBUmdI190HElHrjDlzgrDOsa0WYyl+dqFqVCkOqEIMRSJxhC8IDATQ
+                gRAQhvHAaIJlHIX872GQBs8kEokvDatVEolcvQMcJUh6epAyZj0VZAdR6gyEJzOeGjrepzruOGW47ixs
+                gFE4uZ79ph/bzEcDs6blfqv82xQyrXMakbERkVlj1Gbw/By8VzOdnY3h3EAejd4ymXIE4ewRzzAfEpHI
+                bz1N21j0HGrhk8kVAAAnQU/Ep1CfKl35c5EQW+q6/UfDsK+PRHJfSibtDzc3Z1uGx7WM1xpilIAiAPLC
+                8uWm0LSXJln3TYTLYwUj09a2yLculRrTgZ5h/Ax7emixFcM1I78Lx2LwZOWHd0CEnAJbNJo90984FoBE
+                Xbfvq6rKLk4kBo9kzF2vysKNJnVsCYCSMvvNzs51sZFB4siICji/bXTlKF9k8W5CAFaCqqkszMjdpQIx
+                cNMKXV8rUqmzeXX1Ch6L/cqXyttS5ESO8/8cgaCIRD4eBEspK419Q4lu7MCC8wyl40UqTq5nSV4qp9NH
+                ToJaDX9HVUvkMmfatIV2df1hQtf/bxKbQvhgftiXzFq+fDGl4On6I4WaJGxoqL29bvzArbdBN7q6Vmmm
+                nrunoMAgEhIU6nQDW+d4Bfy2pFL9VaOA2U+Itf86AZjvCQosIgBxEun/NwmrxnDAFYj926l4JMIlwGQx
+                mE3zFEUzOv1oN/vvk3Fj+9koVIV+5nuQbPPC5rNJfFrglQ7mkUUPGcNQQcnJzKGHlEq7ru4I/5n0INrO
+                M/TH8mDWtP8G/bQn4szbMiH44IN7ezt3bv6IYfAbKWWSEABEzW9poQOARkY0uBhpnsNx/m2CGgvSAQD4
+                HRzlEQDkVel7JKFZv75CKfUTSL7ACKIHoXYS2zhYuLYDCSXZAQH0CLEAAFbC42Lu3A0J6eEM/zEnmn9K
+                CEJUxzv9/iMcgAjVNmPb2jf7LRlkpqZmJyJEly9NGIyfUxnGixaaP08lMUk/37PkOZQSQIKUqG/Z8mun
+                svKThBBOACR+7WsaYOg+hKwnarPQHdT+oZCqXlU1ODcWc06JmdbKaDR7tGlmL6fUGUNTL0jmdLq/chTJ
+                HJj+Hh5DMvuc2f5RQHtCUub+SXLed+LykBC0KysPUeoqQLxyaJ5yOJVSU1kiY9ZrXV0qGH97tEBTvJMA
+                j8Wun5QpEkAKTfu3F09+K1TDouSqoHJsRVBRlnj8B5sXL08BIeAZxiOhyvt3b+d4jDH52qiSJZ0e2odS
+                bo8s0ToemNV/u7rWRii1Xx/dBpsPUu8JgVlDAOImUmdOdoK3VwFAOXb8gicYG8xOmdIEgIQAQDQ6+JFS
+                SwOoave5G0u1G5ei+AEAYEtHlR/AgyWa4zwkBHM1NV1BAL+nCt5Mdr5V5CFj/+KRyE+K6l2jMIz/OBXV
+                H/cY25SnLLpeclbJ2yDUBEdLVQdAc2AguUrT3NsAdAqld2MiAADPPNPQDAANKsN95LHltwl5MXxkEQDk
+                6bo7JGU5eHu1zSb1RTJGnrv//wIAKEYi18Rff/3Nk+ACEwEAPaPEunJACAESjeId2/Bo4z6yJfvjgJjy
+                1wZLoAREMrbJTrX9GwG02MaNDzttbcs803wICNEgX1Zi/Dn1Swmg1PXbdMc9hSfSp0umZUF1J3CY6y40
+                Brb+nHpeTfA1T2I9SkmJAjfZQWDOz4/0eZzP5cBTihx9bVsmOpMhHYimpjLKRyRVMQCBkYj8bwjIEgFY
+                /M2X3vB0Lahrtq3tzGSoxZeUoyxQKee8VPfQha6/MDBv3qUIQF+BvQUhAB7i/InvhAigM0LsLbW1zkOF
+                275tJEsEoNFPrluHmv4Pf+MTUig0ORqwBQUgXiRyTdXLjw/4D8diL730+t/uvXc/EU9+GygLWtGJsTYH
+                hrYoMvYqomTGYN/1oqF+mWeYDwMhpv/qjv9xRWVRTsm1tjZMYvq3K/0IAmkuG8UdPR7NCOI+vjm62Spv
+                pnp1+XJVzSfU1oshAMk2NHwIGSul1cNo1o2CS40ynGS1/ZFhopqWyTY2dgIABN2aerpWaZTaLwIgnyBv
+                z1WnrtULpDSP3qQsGQBgtbZOE5HIn1WjHFIcERd0fXL86LjV2NUVCWdM5/9MCFi1tQcJPR+ohKHve16h
+                qpPjc+Bn1hbupQP4jZMS6S8ITesveg4V0BRPfXQH2JknBeZLJwlm3yyX/fs4yp80DOsXo7ls8wb3ROrr
+                ITPduImq3rCAGIKerj+Tq6o6MdPcvBOvrj5cGMY/ivpxjO8RDJwBmtafq2nYK6xwASBZuHB9XNNyTxc+
+                bnsje/wFegJiJJ47YXvx5dG4M1AKVkvLDJFKfUmY5uoRjZBUl6iHx+ruFM6k2bx4cYrH45eFunCNuISu
+                vzJU3zI/fK/wPftbW9t5NP4TLPQYdP2agZftAA/gpMD8LYUX2/WDYmQQs0ypvWk4mJUiWT1lUxOlTrbg
+                dMl/TwLYLiGIicTgUUHa1liBMzyR+G5IuQj3lOMj+sup+AmbJxLf3bT7imT4fquvv153o/EbiuyoY99L
+                Lf4jdmtrx0hJojbtnDkD1dGocxljfN1oSb9+rMWgYdh/bGwcrBkrb297ALq4x+JgW9scJ5k80YtErhSG
+                8Uc3kfjKmp4eYyKHRbgZ0sDUqbN5PHmRMIwHBaX/FYw95enGn3k8fvHQwoV1YwULDWuo1NjayaPRXyJj
+                wtP1bLa+frftnCo1aTBfObzNW6GiKaWWVQTmwLP4qdE7NwRlvaw3FhZ1Dh3LIeBUVn5M6PpzRa26MJDC
+                fhfRV71E4mpnypR5oe6s2rCOsISAXV19uGcYjyAb614MhWGscVOp03HVKq2UI7G9fWs6neb7R6Puubpu
+                fUPXrQujUetTqZR1YGsrNpJ3iB2O2v020LSLJfnEm6PwzoQWIsjGbOo56rPkQe3UNu9kT50627dmTPgM
+                O2DKkAEQL5nMrsjlzGsRuabeBn1Du04Z43/bfffIsQ8+CJ6aA9QAiDBN61uc66eqFmv5CUYAiozR15IR
+                95ytQ/FHQk3Mx3MMeGtPOinS+Ls/7K+7zmJArwUAmCRkI2raGyIafXJg550fb/zzn7OAGIBPFvXSLjQ9
+                pxTchobdYXBwD+K6s6iEmKSwmej6S248/mh0w4ZHCVE9wPN9oce20dOJ+4WP3Yx9RwI7ZBQInCCTanA/
+                Wl/ysXqVT3CPfF9yvwgj/g/AXBgLF/47nskkNUrT6kG2AsiKAbJ27fSB0fyDiEimT385lf88AGzdClAx
+                7DvDm5NPBOjSnAiqgP12uleJix+AesQaoO88fDc0O/+fjkCKkxItOTsQzKWBbrJxIZNx4/qSlY7xnrgN
+                UoeF7oVFf5Y7yN1aHpO0++9AQI/lcNme3ymP8iiP8iiP8iiP8iiP8iiP8iiP8iiP8iiP8iiPUQfSHRFf
+                UB7vj9HTg/S9AGKyPcMXy+N9KejyUZNB4uq7EcT54JWVK7e2nn385pR62LKELo/h45hjtswP/tzb+y4V
+                fosWDdYCOBfMnCUGv/td51L/SNHKy1ceAMgQkej61oUzZgr3oov4z996aaj+3SaRSW3thoZIJPcFpjnr
+                CVExuiefLDLrX7GmBVWRyotZBjMhALqWvQ8AsW0q4sknizeuvcb5+KpVqL0LKEfQHqJvX0qCpF6bA1i8
+                qRnxiivc35Wlc3kEOEkkVKY6IbYAsJxEEvH/neo+i4jG2ylys90f1NAz1wZpU5Q6COCI5Qcj3n23fcSO
+                4UZIurvfbXwr0BFUNk1Pz8irYOl59+kT3d2KCuyAOaGqp4v9OoCQCsyumDef8yOPzOwS/Pa7ZQHp7Nmb
+                kow5LwN4CMTyCLE9wxDynHPFG4j9lcHibp/fC6dQbc/Jz9dyo+O9a3c3sq4u1Lq63n7prMACFNyvqwu1
+                7m5kPvDHasVGe3pQ2770rfBb21fwqFPZ0HI3qjQxSwDYvLEJ8fAjVTvkbQXyDjjuCQIgff752qFEYusp
+                2Wzqr4hMAkHNdbl3552R5qltsWsByHH+i8m3/3sgqqdsajriwFjnj39M7kREQsj2CBlV9y5Iql62cWM3
+                efBBAIAgSwbw1ltHfpMxgGeffcG8+1e10XWb3EgOkmbO44amFcJuoxS9qqjuNE337FmzLHvvvessxogn
+                JXj+b4wK3K4uoHV1gB0dgBddRCQikRde+PZLEQwHMsF99hna94wz8OljjiGbts99V2kARCSig4dn7eip
+                AK6HCBCNmdqMGc6/bv9d5KJjjkF2663b9i47iLsSDwC1TIY8aJpDFzpOogfREZRSbe3Lrrj7HuOjv/2t
+                8+ejjyY/7ulB7cILidhGyUFaWgYqtm41Tt26Tv9sX79W/8QT7mJCyGO9vciOOYZ4b0MqkaqqLU2Okzpy
+                8W7kI0cdyW84++zYzcEnKAH4/Be2pp95Rm8ZHNSnORynCUHbUGCLK0g997D6sBU0DQgxz4uZiGAQwhgB
+                QhAwKGYjGSWC6rqjaRHb1Hlm2TKnz4jC5qhB3owl5OvxBFlbU+mtbW62Xz333JfXE0L4gw8WFjuWyHxx
+                j2WRrnkd8i9Tp8Jfzz1XfyK0Ebfl3SkAkalU/4x//9v8091309dvuMH+XEvLa3cefPBMd9uFBFIAIpqb
+                N7e89Zb5Y0RPEiIBQCOzZomhBfPtEwiJeOp0edfFrqsj2q96eb9fAldQaksgXJx4srCe/JezaNuPMVWN
+                VNeth4LuWqk0el/6Mn8aEY1t43uBk+cF01dQughBbGpGvPhit3fFwe6HFu7snj2nw/5x+wz7X62t7oaG
+                JlfW1iJWVCLGEoimiahpGKqQ64UqFRRfPFxiwi8mjxiJIKZSiLV1iG1tiHPmIu7S6VhdXe7/rVjh3nPi
+                ic4ln/28093T0z+DUuuRaBRx510Qv/xV+2YAJCedhJHxaUkpa2Y9qOr6ufiRjyBec43z8bexVgQAtd7e
+                Xqbr1kMFeuHw9umIRx2VO/ZdxJPH241I2tuH6hhzXwOQSIjlAdheIinx858X/4c4UL1t5jr14tFo9khC
+                hCTEcQFsvmAh4vXX8ytLt5qEK/gXxsqV62JNTfZhhDg5AEdMbXe8pmbEeFIBVlUfEH72+eglNQKzpCr3
+                a3mEWC4hluNfrvo7jpQijt1rnAcFKCWAh9EoYl0d4ty5iLPnOC7TbAHg2C2tyK/4jvt5VgSHrq7JcGk1
+                X7HY4Fd8K4OjG0Luuqv71Lnn9lVsu5KqOiIYRu4aNS+qRkhdPeJ+BzjfDp7zPWOGSaX6F6tiilwQoprL
+                TGlFvPib7l8QFZi2QZIyQgAMI/NDv4QBB3D5YSsQ/3gXP3x8QAc18gpjjz3erJ09w+luanF/VlfnvhqN
+                SQRwPNXpKmgs6RW1Y7A8xuz1jFmPaVruNsas7xpG7nO6njvBMDIHRyKDy3S9b5FhbJoN0N9umn3TTLNv
+                GkB/u2EMzNb1vp0TicE9DSNziK7nTjSM3Bd03bpK06zbGbOeYMzewKhTBHbhF8lxEYiLADZGoo7cfRkf
+                6u4W/zznHLfnBz9wd8VwaVhA0ts73hyrdapIbN2TUu4BOBzA5fPme/ycM1RbvG2TnArI8ejQOWqDOBzA
+                4skU4tJl9n2IQHzF+b3iGQ4aOQ75jRxdTqlq97VgAeJV3+M/I0TtzskBWknVJS2vRRmz1vjHF9c04Z12
+                uuhbs8aaUXQ0kmJrQ1fXhkRbm31kXZ39m4pKd1M8jqjpecB4QZFKxhwZiTo2ZfZLmub8zjByX40a2RWJ
+                xOCc2dWbkoRs34TKfGPQyq3peNyZFzWyR+m6daGmWXcxzX6VMRcJcWRho6mut4aBOGUK4uLdJH7kaP7v
+                887jF/z0p0MLKRlPWqs/19W9Vc+Y6zdGcuyWKYiHrsh9ftslpwJyIjF4lOqv7goAixsmYmeneKYnL+17
+                3mtONDUZkcjg+T7HdSm1EcDmS5YiXnst/25h0iYFaL/R5pb5lHK/GpLFq6oRv/IV/h9EjAMg6exUExsA
+                pakts6iixvl2IsVfiUTRL1Hn5qvzF6oLWW8CWFzXJX7sBP7o6tWr9dELtOTpilZUFZWF2sqNdbHRv0tG
+                BfmSJa9F6+pySzXN6ffLuHkBpQk3RtI0xNY2xD325OLkk8QDl1zinNy3tq8ibEdW0hZZT88qjTHFkwEs
+                O12BuFeXc3sgZLZdgPXtRwi3g3XRNIkd89yN3Sf0z/BPzveqN1gpF6aZucqXeHlAd+2NeP31/JsBoCcp
+                oZmauP6PhY+y6TMQL7tM3GEYgb20l1XX2YfHU+49RtT1qJav+eYWqi0JZMz9t65blyQSuT0XL34hpWlK
+                6ncfw+0NG3AGALKODjRCQN3BJRvygNeCxqGRyOAySj0PwPZmzfJwwaLsuYRkL2PMfa7AwT1UnW9tLxZH
+                nL8A8YijxOvnn88vvf9Oe2Z4gxhGLuiGaxsmYueu/LlLL92a3rb3U0BOJAb3oJQPqQ1ncUIFzpwlMitW
+                ZHd7Dyh8pTk4hk9eAGiH77Mv4nXXOd8KADpJQPtVRIe+oUCp+ubtsgvi5ZfzH7ZOy51gRPiTTA8WOmhI
+                HxT+dF7SdeeKZDK723CuCRCJZL4OgDh7DuIPr+cXla5c7jgdRNNyvcraIOSKFe6zphkorqv1RCK3l67b
+                11DqvFEAtiUALAdAYttUxOUH8dx55/Gf/fzHzk6mmb3YnxOHMQ875vH+44/f3BHY1reRWuxFKR9UG8ri
+                QLic2i7c5QdkDnwPKXyl8VwF6OyviwG9116I1/yAX6m6K03GylEwKxlG9pc+f/YAHK+lBTGVDo5gK19l
+                k1JXaJp7VzRqH1XofhXeHKt1ACT16b5plDgWYyjPPJO/iohR+J+EsyopWVWVbWHMyQI4orUN8fTT7S8B
+                9NC2tqBdhBrt7VvTkUjuBE1zHqBUYGDCVNKaY1Mz4vyFLjJNomoe73hTp4ncEUeoxqOTl5wKyLHYwCGK
+                8hWAPGWqx/fZx17xPgLy8KMTEYihZW8OAVoCOHy33RCvuML9BaJ66dJsm0iCNsaMAhiGvQbAk4TYXqjZ
+                vADiIqXuoGE4P6yoyOxU1EsvcF2TYklomtlbABCX7o7Y2+uc8r+Rzn5RSn3oUl+RFnvuyQd7f5JpUM/T
+                Q0czNRICUFmZ213T7J9T6ti+2U0qae1iYF1qn474pS/Znw3eu3QwF5IwYrGBEykVPKAWQAS2tAq+R1f2
+                iPchkIcDWjVFz/24EJSkrBzz5iF+7eviL4ODg7UTA6cw6el0ZhfVWs21fLMaJ8QWhNgeZUIeuJy/1NW1
+                uSVY5BAfJROZFgnh0oyg/Mx5/FlE1LfNMbGtQwG1oWGwljFnK4ArausQP3aCc/XYUjQP7HxDpURicI5p
+                Wt8jhHNCHEmJ7alAH1smk648ulu8/u1viy8jro0E9x2f7vXmW0ZHIpmv+ZtMAlicUonNrSK3+16ZQ97H
+                QB4JaNO0vusfg4JSSwLYvKUF8eyzxQsPPOB2jq4YFiRCR8eahGlal1HquoU+7LYsWCZsAeB4O+/i8e9+
+                z/sx4mvRSThWGAEA08z8AQBxyVLEW29xT39npXMglTNXBubNJUt55tvfzk0pjY6hXpjr7LcIEV7eVp1v
+                hqRMkQt3Qjz9TO8/t/6aH5iH7Kino3qmzs7VMcOwfhGsH4DtahpiW5vYsueeg3t9AIA8kkNHIpkvBo0x
+                KbU8AEskkogfPc7L/vTn6mgvTGxh8VKpzIGMuc8UGhfZNgCibiKaUetXmpa7M+R5knM7EL/6VfHXV17J
+                NJYGSCWBK1XbM5cx9M48U2zwvZd0x5uX8ubHeZRyB8BxG5sQj/mo9c3SuK16v7a2tRWa7tyZ72hAJSbT
+                jsuY9Uhg1iNgcQCbR2OIBx6EePHF/Lr+flVLuzBPBSFSWbllHmPu44UuCbZrmIhTp/KX9tpr64IPEJCH
+                K2/KcjB0HKWuFQoP9AA47rMf4qWX8hsRNyULxv+1EdO0riQkKEpuOQCOpxmI8RR/pq4uu4IQxSUNw/pZ
+                KBDcbWpCPONMb+2df3T3DAAzPih9ThjNfgcAsX064lVXuT/d8dJZzQ0iEBXXIFHTuLdsT/7Kj360KTk+
+                1emh+YSJmr6dGXP/64POogyxuVlkOxdnDycEIBbLnMgYf9Xf9H57CsebMRPxtNO9F2+91TowvLEIAYiZ
+                mZMp5QP+3HMAh8fiiFOn878ddJASFB8wII+UIMnk5iWMuWsL0tSSALaYOQvxrE+J//5tlbukKrG5Q9f5
+                6tAR6RCCGE9wWdfgXN7VtSYRVur84/UiQlWsBIDlRKOIRx4l+A9/6H4uiGkYx/1NAJAuXIhxTXNeBEC5
+                /BDEu+4S3TsW0MpCEIlkvqziQRx79hzEk0+2DxlfKqvnUaDLrqSUZ4J+57qB2NIiXt1jN2XvDQDf2Liu
+                xjDsGwIpTamKoTAjiIceinjllfybsShAKvValWG4Py+03bZcAEem0oizZro3nX22CtTqLmfmq0WobdvQ
+                oOvOvT518Ci1PQBLxBOIy5a5PJm2c4WjzUUzglhTy5+ZPX1o75GKYYHKpFJDxzPmDvm2VwfAkYt3Qzz/
+                fO+ehx8OHAlkLI7oH62DyxhzJWPCO/WT3sDTT9tzS7e6TH4uUvH+AyjlEsCxa2sRDzzI/sE4Sl9e4Wtq
+                2jLF0Jxen8tKANuNxRCntLoP7Lvv5ubwbwQJDkpJzB6u3NrBSWZ7AI7cpRPx2I86D+qm9ULhlLNdQhGr
+                qgSfNSv76WD+3iVpT+8KQOc1ZFO3LiLEwxDn9QqRarYgxPUqK0Wuvt659sMffrUyJI3JWOCorNy6gDF3
+                tb8gHoDt1NUjHvtR0f/974tPq8CnsaiHT4fiQ58FQExXCPm5z/MXcWiobvtK6MKzUur2Abg8FkdcsoQ/
+                3Nu7xugeYYHBPKWgFCAWs07VNHdj4NUDIjGVQpw2zbqitzdwhBRvhgLda6vd0KBrzh2BMCHERgBbMD2I
+                GLQ4gC0MA7Gunv/fgrlK0RvfMvTBBTQNdncqlTlI1/kr/sQKP4xUAtgeY0Iec4x4ATHXlmeKPeO5w9Vi
+                dXWtjZi6dSWlMvAI2gAcd+5EPOtM8ejPf2ItDz/LcCmonDORSOY6AMSGRsQvnS+eHBod0CQIphktB7DA
+                eYcBUwcAqKvbulDT+HoA7hmGxAUL+Cuf+MSmJvWSwSYr2JR909tejDl/LXSPs11NR6ysEq/MmJY5NEyZ
+                xp57RRMIAUjGsxcR4knfqeJ7Ti0XwMN4HLG5yf3Vfru+UT1cypfHuBJq1qx1NYZh/zQUTMP9yZXVNR6u
+                WCGsiy7iV6xdk2koKIhjgbqwkPG4dQBj7prAigJg2/E4YtfeiOd+Rtzxm1/mlg1TqfK5doq2mKb98wDQ
+                n/mMeO7RfzjzQyCj27CBiXqu/v0ZczcDuFLXEWfOFG8eccjg3IJSNdx+nE5ndjEM+zcqOi2QxohGFLGu
+                zr1pj0Vv1oboBJnIJt3T00MjkdzHGeOPKrtx0PrOFkxDTFfwTVOn5k4azdZfHiXSjkQi182Y+0rBlhxI
+                aY7TpyN2d/MN37rY/dqbLwzWBt8uJISO7rXq7FwXi0atiyjlmVDchltVhdi1j4dnninuvOFaflBRfDDr
+                6EADEUk0at8EoLJDjj9e9P/4x84pemDEQiBX9WxOnXZatvkTnxiYffLJQwtWnuwsWLlyaMGnPjs45yvf
+                2DLlT3/amkZUz9fd3csiEfvLlHIBwFE3ENvb+dp99x3sUPZ0NMKevZqGwS4z5vaqzwcRcwIpQ4wk+BON
+                LdZB4wNuePUpQgCiUfsoxpxHQoJD+k1FUY8iVla7v9157ta2Mq14m/Zopdi8UW0YzjWUujJQUnxlhANI
+                nD0bsfsjfP2FPfyCRx7JtoykC0hGW+Dq6oHZhuH+glJXhkDN0xWIS5YgnnACX93T455z7725KcVPF49m
+                PwXAMwACl+2BeNTRzqq585w/zpjtPjt9pruhfbqTmzbN9drbBba3C5wxQ+Cs2Y6cN9+xOjudTcv2dJ/f
+                b3/3/qoq+3FfYfOqqoVYsJO4DWCNEf6tXTs2NNQ0Op+MpZy/awb63YJtETSbZRp/PZ6yzl65crU+NuAK
+                HNvfREY8lfuorvOHQyD2KYWLVEOMJfnamiaV4hRWGt8tg7w3pTTxCAGIxweXOY75TSGMLkQAQhzhS08E
+                MLQZMwh0zPX65szGXy/aRf7o+I+ZT2JIWgMAhDKBaXDfRCK7m2Vpn5eSHImoU0QXACQ3zIg+dSpAa4sY
+                mtKKDzQ14e/ffBP+/eCDYkkmoy/bshU/4gkSAZCoGyYD9DsaogAVdDOi2brfDYsRQjTQDQBPAEjpeIhA
+                mlsYOfTD5K6qKrjbsuzH7rgDZ+Us88hMDvZ3bL1KuACIjgdgMEIIEMLXaZq8tq7Ovu6NNyq2hucrRK8o
+                FDLLob19fd2m/srjXIudyl1tvvQAVBgASgCiATGJbnA7Hve+P2fWpksfeaR1q7rPBQBwoSwL2e0opZXB
+                P/dxxtznQq5rHkhVAA8bmxG7urh36qnij5ddJo5FxGFthYPaFCrOoHDfdDrbqWn2jyh1+gsdh9U9UynE
+                2XMRp7VzjEYRmZa3d3MVuOOMaN1dyAkcfg3vR+8Gx7oIPHEzZyLOmsUxFg9+x/NDOpVlgVH3aSNqn9vS
+                8lrVSBNdkB5WoFmEADS3ZZckq+xrzZi7UcV1hyWxcmtTJtGMurfUTxma917gxu9xrlPoYtrZuS72zDPV
+                p7ku/Yzn6VPUotkeAPEbsBItkTRgejtA21Tx2tQ2+MOMGXjr2Wf/42FC9hFhfv3f/wKrrQX54IOqBEI6
+                3TfVdiPLQZL/xznrRPQQMS9librMYVFqAE6OENgEgBsBYDMh0C8lDiGCTUCqg4SASSlLEAIVUpJqAKhH
+                hFoAIzFcb3VkSKoTAEJq6ymNx+TvX1nrXX322W888v3vz3ICS0hXF2BRbQ8gADC3o39Gf39kRdYix9iO
+                tht3KEgPQaUzIQIQDcAkKviL3xePi0sGBmIP+s1EGZSbbb5zCiIAwIIFr1ZGYvbnGXNfyccbqMxooaSZ
+                CshvaERcvBjxqCPFmrPPdi6/8gp3ryD4qEi6+fbeLfNN0/4HodxXhux8qhKljmTMXqNp9o9N0zotEskt
+                q4pubpkx4wWzqHX06BLF/0xHxxojFtvYGI1mdzN16xRdz13LmP04Y45beBeljNXWCe+cc8VDTzya2734
+                WYNBCUDn/ME5U6daZ9fXO39OprhlmHmOLf30KjcINqJUoq4598bjQwcUnrlgIi2Pd5R6FBSS9vaX0lHT
+                OpMx96nCUe4WURBbUobY2IS4SyfiwQfzl086xf3pl77kHP/Tn1rTNQ2gB3po1LQuCdEMmT/emftUJGJ/
+                uaIis1MPjlvCa7Qcv+JcQTIW0KuT9mzDsM9lzHmk8BwOxmKIBx2EePll/PuIaAIAfPyIgepFi/j+09ud
+                SxobnUcrKhweiQaODp4PBlIbWwZJCo6hOb0VicGu4SDufU+Z28j7E9TAABRF6OpapT366NJDOSeflJIc
+                KKXuu23V0V1QGIEBmKSyEqCuDqCqirtVVfifxx4D3LjRWOxLL5mu0ADQWzUw4F0MECsqooVGW9srVNen
+                omH8F6NRGxOJTqyrC5S+W6Gjo3vYMf3MM2oNNm78KwHYGzIZIAMDQDkH8uqrgADAh7dYznYSop8PACsQ
+                JQUAMm++SefP548/8Thu6h+gu7quVm3bAK4DgMgBQAr1jkgAmAag+6cBX6fr+JtYzP1Jf3/yvz6d8JMT
+                trUaVBnMOwrUNFgUQgAqKoYWZDLaxzyPHY2oz/AXDwhxfWDn+30TAMaYpgEggOc5HiFAEQnMnUfE/vvi
+                jZrm/Y1S/a1o1Fu3fPnQW11dtUPeDlh+QgDuvvsF88Ybm2sHB6GRaKzulZfkh15eyz6NkqQBJCCCZMxk
+                lAJwjqCcHEHjeiQAVANQ1j1CXcEo+aumiV/W1W2647XX2voKNOVWADjGe6+u+AfA2B2AGjCQcF1dayOP
+                PVa7r+sa3VLiQYhGI+blpYOEKCD4f0cASEi5I1BRoUMyCRCLAZgR7kYjsDliwgZm4vqITtbrDDdQk2zU
+                KW4FJgY1nWZ0Ay0NNUeTKAUF1CQQ2wEy5Amdenokl3PjnqenhCsrspzUCBfqhUsbbFc2uw6rd12sc7ie
+                EC6AZQFYllDWMx/wiOgBhM2MjAWlBAnhQCk8zpi83TDc32WzqWcK74ssPDfv5fEB89wEdtZCoca2tr6K
+                jRuNvThnh0lJ9kHUpxcsCQiKXoBXsFoA8W2w6IOGAmjAGICuA+gGgKEDaDqApgFQpgJ/GFEKGQL6lmYE
+                KSkIBJASQHrq8gSA6wEIrv4sBICS+B6o4Kq8VcPfoIGFgzIAPaRQOjYh8Dhj8o9RTd4zaCWeDAE4yHN8
+                X1knPqBuyLy0hjA3nDHjBXPDhpZdOKf7CAFdUpKdEY1aHLbcAlSibKESJ+KEc0xCcx2ecwz9F4f/HQ7/
+                OPHrzGJwUujDbkWIIwkhL1KKD2uaXGWa5G+Dg9G1w58tKCFM3pfOjrJPfQxgEwIwZUp/5caNxgIp6WIp
+                cTFKWIBA2hDN6EgABwLcQ6JqteJwZ1/pa+IDlgIwpZcWcWgADwjxNhHAFymDJxmT/9I08Xhn5+MvPPjg
+                PmKkMvz+BXAZzOMC+1YK0E2KAUAAQPb00Kqrv9jsut5MIbQ5UsJsRJiBiG2ItBYRKgAM4+12TlCA5QAg
+                M5RCHyCuIxReIYS+oCoWkedqa/na116r7B9lU7EQhfhAuZvLYC5Navvmu5HmqnyBw/bNqU2bWLXrGjWe
+                K2qozmqEIGkATCOyBIAXp5QaiBB2KwsppQ3AMoTgEGNkAFFupZRsYszbgkg277rrpv6HHppmj05l8pIX
+                Clz6g+uhK4N58uAu5sC4422ywzZVGbjl8U4APfCajevtm+BapQ0vyFiOFS6P8iiP8iiP8iiP8iiP8iiP
+                8iiP8iiP8iiP8iiP8iiP8ngnxv8Hj7oE8NAD9pgAAAAASUVORK5CYII=
+</property>
+        </structure>
+    </list-property>
+</report>
